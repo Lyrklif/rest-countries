@@ -24,13 +24,22 @@ const {
   refetch: filterRefetch
 } = filterByRegion(filter)
 
-const isLoading = computed((): boolean =>
-  query.value ? isSearchPending.value : isFullListPending.value
-)
-const isError = computed((): boolean => (query.value ? isSearchError.value : isFullListError.value))
+const isLoading = computed((): boolean => {
+  if (filter.value) return isFilterPending.value
+  if (query.value) return isSearchPending.value
+  else return isFullListPending.value
+})
+
+const isError = computed((): boolean => {
+  if (filter.value) return isFilterError.value
+  if (query.value) return isSearchError.value
+  else return isFullListError.value
+})
 
 const list = computed((): Country[] => {
-  return query.value ? (searchedList.value ?? []) : (fullList.value ?? [])
+  if (filter.value) return filteredList.value ?? []
+  if (query.value) return searchedList.value ?? []
+  else return fullList.value ?? []
 })
 
 const search = (value: string) => {
@@ -43,7 +52,7 @@ const search = (value: string) => {
 
 const filterRegion = (value: string) => {
   filter.value = value
-  filterRefetch()
+  if (value) filterRefetch()
 }
 </script>
 
