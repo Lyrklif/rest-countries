@@ -8,6 +8,10 @@ const { isPending, isError, data } = getAllCountries()
 
 <template>
   <main>
+    <header>
+      <h1>Where in the world?</h1>
+    </header>
+
     <p v-if="isPending">Loading...</p>
     <p v-else-if="isError">Error</p>
     <CountryList v-else :list="data" />
