@@ -38,11 +38,12 @@ export const useCountryQueries = () => {
   }
 
   const filterByRegion = (region: Ref<string>) => {
-    const { isPending, isFetching, isError, data, error } = useQuery({
+    const { refetch, isPending, isFetching, isError, data, error } = useQuery({
       queryKey: ['region', region],
       queryFn: () => fetcher(API.REGION(region.value)),
       staleTime: CACHE_TIME,
-      gcTime: CACHE_TIME
+      gcTime: CACHE_TIME,
+      enabled: false
     })
 
     return {
@@ -50,7 +51,8 @@ export const useCountryQueries = () => {
       isFetching,
       isError,
       data,
-      error
+      error,
+      refetch
     }
   }
 

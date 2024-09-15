@@ -3,10 +3,12 @@ import { useCountryQueries } from '@/queries'
 import CountryList from '@/components/CountryList.vue'
 import { computed, ref } from 'vue'
 import SearchCountry from '@/components/SearchCountry.vue'
+import FilterRegion from '@/components/FilterRegion.vue'
 
 const query = ref('')
+const filter = ref('')
 
-const { getAllCountries, searchCountryByName } = useCountryQueries()
+const { getAllCountries, searchCountryByName, filterByRegion } = useCountryQueries()
 const { isPending: isFullListPending, isError: isFullListError, data: fullList } = getAllCountries()
 const {
   refetch: searchRefetch,
@@ -14,6 +16,13 @@ const {
   isPending: isSearchPending,
   isError: isSearchError
 } = searchCountryByName(query)
+
+const {
+  isPending: isFilterPending,
+  isError: isFilterError,
+  data: filteredList,
+  refetch: filterRefetch
+} = filterByRegion(filter)
 
 const isLoading = computed((): boolean =>
   query.value ? isSearchPending.value : isFullListPending.value
@@ -27,9 +36,14 @@ const list = computed((): Country[] => {
 const search = (value: string) => {
   const hasChanges = query.value !== value
   if (!hasChanges) return
-  
+
   query.value = value
   if (value) searchRefetch()
+}
+
+const filterRegion = (value: string) => {
+  filter.value = value
+  filterRefetch()
 }
 </script>
 
@@ -40,6 +54,7 @@ const search = (value: string) => {
     </header>
 
     <SearchCountry @onSearch="search" />
+    <FilterRegion @onFilter="filterRegion" />
 
     <p v-if="isLoading">Loading...</p>
     <p v-else-if="isError">Error</p>
