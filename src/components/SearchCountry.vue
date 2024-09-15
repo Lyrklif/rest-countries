@@ -7,16 +7,17 @@ const emit = defineEmits(['onSearch'])
 
 const query = ref('')
 
-const searchQuery = computed(() => query.value.trim())
-const isValidSearchQuery = computed(() => searchQuery.value.length >= MIN_LENGTH)
+const trimmedQuery = computed(() => query.value.trim())
+const isValidQuery = computed(() => trimmedQuery.value.length >= MIN_LENGTH)
 
-const search = () => {
-  emit('onSearch', isValidSearchQuery.value ? searchQuery.value : '')
+const onInput = () => {
+  const searchValue = isValidQuery.value ? trimmedQuery.value : ''
+  emit('onSearch', searchValue)
 }
 </script>
 
 <template>
   <form>
-    <input type="search" v-model="query" @input="search" placeholder="Search for a country..." />
+    <input type="search" v-model="query" @input="onInput" placeholder="Search for a country..." />
   </form>
 </template>
