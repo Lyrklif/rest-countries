@@ -16,18 +16,17 @@ const {
   isError: isSearchError
 } = searchCountryByName(query)
 
-const isLoading = computed(() =>
+const isValidSearchQuery = computed((): boolean => query.value.trim().length >= MIN_LENGTH)
+
+const isLoading = computed((): boolean =>
   isValidSearchQuery.value ? isSearchPending.value : isFullListPending.value
 )
-const isError = computed(() =>
+const isError = computed((): boolean =>
   isValidSearchQuery.value ? isSearchError.value : isFullListError.value
 )
 
-const isValidSearchQuery = computed((): boolean => query.value.trim().length >= MIN_LENGTH)
-
 const list = computed((): Country[] => {
-  const list = isValidSearchQuery.value ? searchedList.value : fullList.value
-  return list?.length ? list : []
+  return isValidSearchQuery.value ? (searchedList.value ?? []) : (fullList.value ?? [])
 })
 
 const search = () => {
