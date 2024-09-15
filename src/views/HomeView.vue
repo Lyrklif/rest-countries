@@ -25,13 +25,11 @@ const list = computed((): Country[] => {
 })
 
 const search = (value: string) => {
-  const isChanges = query.value !== value
-  if (!isChanges) return
-
+  const hasChanges = query.value !== value
+  if (!hasChanges) return
+  
   query.value = value
-  if (!value) return
-
-  searchRefetch()
+  if (value) searchRefetch()
 }
 </script>
 
