@@ -4,7 +4,7 @@ import CountryList from '@/components/CountryList.vue'
 import { ref } from 'vue'
 import SearchCountry from '@/components/SearchCountry.vue'
 import FilterRegion from '@/components/FilterRegion.vue'
-import { useFilterCountries } from '@/hooks/filterCountries'
+import { useFilterCountries } from '@/hooks/useFilterCountries'
 import { debounce } from 'lodash'
 
 const WAIT = 100
