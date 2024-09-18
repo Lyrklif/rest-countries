@@ -30,7 +30,7 @@ const setRegion = (value: string) => {
 <template>
   <main>
     <header>
-      <h1>Where in the world?</h1>
+      <h1 class="text-3xl font-bold">Where in the world?</h1>
     </header>
 
     <SearchCountry @onSearch="setName" />
