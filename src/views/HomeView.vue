@@ -6,21 +6,21 @@ import SearchCountry from '@/components/SearchCountry.vue'
 import FilterRegion from '@/components/FilterRegion.vue'
 import { useFilterCountries } from '@/hooks/filterCountries'
 
-const query = ref('')
-const filter = ref('')
+const name = ref('')
+const region = ref('')
 
 const { isPending: isLoading, isError, data: list } = fetchCountries()
-const { filteredList } = useFilterCountries(list, query, filter)
+const { filteredList } = useFilterCountries(list, name, region)
 
-const search = (value: string) => {
-  const hasChanges = query.value !== value
+const setName = (value: string) => {
+  const hasChanges = name.value !== value
   if (!hasChanges) return
 
-  query.value = value
+  name.value = value
 }
 
-const filterRegion = (value: string) => {
-  filter.value = value
+const setRegion = (value: string) => {
+  region.value = value
 }
 </script>
 
@@ -30,8 +30,8 @@ const filterRegion = (value: string) => {
       <h1>Where in the world?</h1>
     </header>
 
-    <SearchCountry @onSearch="search" />
-    <FilterRegion @onFilter="filterRegion" />
+    <SearchCountry @onSearch="setName" />
+    <FilterRegion @onFilter="setRegion" />
 
     <p v-if="isLoading">Loading...</p>
     <p v-else-if="isError">Error</p>

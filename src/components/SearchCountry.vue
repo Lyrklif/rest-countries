@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineEmits, ref } from 'vue'
 
-const MIN_LENGTH = 3
+const MIN_LENGTH = 1
 
 const emit = defineEmits(['onSearch'])
 

@@ -1,22 +1,32 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import { computed } from 'vue'
+
+type TFiltered = {
+  filteredList: Ref<Country[]>
+}
 
 export const useFilterCountries = (
   list: Ref<Country[] | undefined>,
   name: Ref<string>,
   region: Ref<string>
-): { filteredList: Ref<Country[]> } => {
-  const filteredList = computed(() => {
+): TFiltered => {
+  const filteredByRegion: ComputedRef<Country[]> = computed(() => {
     if (!list.value) return []
+    if (!region.value) return list.value
 
-    return list.value.filter((country: Country) => {
-      const hasName: boolean = country.name.official
-        .toLowerCase()
-        .includes(name.value.toLowerCase())
-      const hasRegion: boolean = region.value ? country.region.toLowerCase() === region.value : true
+    const filter: string = region.value.toLowerCase()
+    return list.value.filter((country: Country) => country.region.toLowerCase() === filter)
+  })
 
-      return hasName && hasRegion
-    })
+  const filteredList: ComputedRef<Country[]> = computed(() => {
+    if (!filteredByRegion.value.length) return []
+
+    const filter: string = name.value.toLowerCase()
+    if (!filter) return filteredByRegion.value
+
+    return filteredByRegion.value.filter((country: Country) =>
+      country.name.official.toLowerCase().includes(filter)
+    )
   })
 
   return {
