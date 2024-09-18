@@ -14,18 +14,18 @@ export const useFilterCountries = (
     if (!list.value) return []
     if (!region.value) return list.value
 
-    const filter: string = region.value.toLowerCase()
-    return list.value.filter((country: Country) => country.region.toLowerCase() === filter)
+    const regionFilter: string = region.value.toLowerCase()
+    return list.value.filter((country: Country) => country.region.toLowerCase() === regionFilter)
   })
 
   const filteredList: ComputedRef<Country[]> = computed(() => {
     if (!filteredByRegion.value.length) return []
 
-    const filter: string = name.value.toLowerCase()
-    if (!filter) return filteredByRegion.value
+    const nameFilter: string = name.value.toLowerCase()
+    if (!nameFilter) return filteredByRegion.value
 
     return filteredByRegion.value.filter((country: Country) =>
-      country.name.official.toLowerCase().includes(filter)
+      country.name.official.toLowerCase().includes(nameFilter)
     )
   })
 
