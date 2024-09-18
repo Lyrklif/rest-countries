@@ -10,23 +10,22 @@ export const useFilterCountries = (
   name: Ref<string>,
   region: Ref<string>
 ): TFiltered => {
-  const filteredByRegion: ComputedRef<Country[]> = computed(() => {
+  const filteredList: ComputedRef<Country[]> = computed(() => {
     if (!list.value) return []
-    if (!region.value) return list.value
+    if (!region.value && !name.value) return list.value
 
     const regionFilter: string = region.value.toLowerCase()
-    return list.value.filter((country: Country) => country.region.toLowerCase() === regionFilter)
-  })
-
-  const filteredList: ComputedRef<Country[]> = computed(() => {
-    if (!filteredByRegion.value.length) return []
-
     const nameFilter: string = name.value.toLowerCase()
-    if (!nameFilter) return filteredByRegion.value
 
-    return filteredByRegion.value.filter((country: Country) =>
-      country.name.official.toLowerCase().includes(nameFilter)
-    )
+    return list.value.filter((country: Country) => {
+      const localRegion: string = country.region.toLowerCase()
+      const localName: string = country.name.official.toLowerCase()
+
+      const isEqualRegion: boolean = regionFilter ? localRegion === regionFilter : true
+      const isEqualName: boolean = nameFilter ? localName.includes(nameFilter) : true
+
+      return isEqualRegion && isEqualName
+    })
   })
 
   return {

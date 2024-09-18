@@ -25,7 +25,7 @@ const props = defineProps({
 
 <template>
   <article>
-    <img :src="image" :alt="props.name" />
+    <img :src="image" :alt="props.name" width="50" height="20" />
 
     <header>
       <h2>{{ props.name }}</h2>
