@@ -1,6 +1,7 @@
 type Country = {
   name: {
     common: string
+    official: string
   }
   population: number
   capital: string[]

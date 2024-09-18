@@ -4,7 +4,7 @@ import { ref } from 'vue'
 enum FILTERS {
   ALL = '',
   AFRICA = 'africa',
-  AMERICA = 'america',
+  AMERICA = 'americas',
   ASIA = 'asia',
   EUROPE = 'europe',
   OCEANIA = 'oceania'

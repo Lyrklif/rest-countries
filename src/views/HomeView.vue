@@ -4,27 +4,23 @@ import CountryList from '@/components/CountryList.vue'
 import { ref } from 'vue'
 import SearchCountry from '@/components/SearchCountry.vue'
 import FilterRegion from '@/components/FilterRegion.vue'
+import { useFilterCountries } from '@/hooks/filterCountries'
 
 const query = ref('')
 const filter = ref('')
 
 const { isPending: isLoading, isError, data: list } = fetchCountries()
+const { filteredList } = useFilterCountries(list, query, filter)
 
 const search = (value: string) => {
   const hasChanges = query.value !== value
   if (!hasChanges) return
 
   query.value = value
-  if (value) {
-    // search
-  }
 }
 
 const filterRegion = (value: string) => {
   filter.value = value
-  if (value) {
-    // filter
-  }
 }
 </script>
 
@@ -39,7 +35,7 @@ const filterRegion = (value: string) => {
 
     <p v-if="isLoading">Loading...</p>
     <p v-else-if="isError">Error</p>
-    <p v-else-if="!list.length">Not Found</p>
-    <CountryList v-else :list="list" />
+    <p v-else-if="!filteredList.length">Not Found</p>
+    <CountryList v-else :list="filteredList" />
   </main>
 </template>
