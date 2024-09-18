@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FlagImage from '@/components/FlagImage.vue'
+
 const props = defineProps({
   name: {
     type: String,
@@ -25,7 +27,7 @@ const props = defineProps({
 
 <template>
   <article>
-    <img :src="image" :alt="props.name" width="50" height="20" />
+    <FlagImage :alt="props.name" :image="props.image" />
 
     <header>
       <h2>{{ props.name }}</h2>
