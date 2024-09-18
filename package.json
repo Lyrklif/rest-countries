@@ -15,6 +15,7 @@
   "dependencies": {
     "@tanstack/vue-query": "^5.56.2",
     "lodash": "^4.17.21",
+    "vite-plugin-webfont-dl": "^3.9.5",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
