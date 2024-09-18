@@ -5,6 +5,9 @@ import { ref } from 'vue'
 import SearchCountry from '@/components/SearchCountry.vue'
 import FilterRegion from '@/components/FilterRegion.vue'
 import { useFilterCountries } from '@/hooks/filterCountries'
+import { debounce } from 'lodash'
+
+const WAIT = 100
 
 const name = ref('')
 const region = ref('')
@@ -12,12 +15,12 @@ const region = ref('')
 const { isPending: isLoading, isError, data: list } = fetchCountries()
 const { filteredList } = useFilterCountries(list, name, region)
 
-const setName = (value: string) => {
+const setName = debounce((value: string) => {
   const hasChanges = name.value !== value
   if (!hasChanges) return
 
   name.value = value
-}
+}, WAIT)
 
 const setRegion = (value: string) => {
   region.value = value
