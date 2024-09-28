@@ -14,10 +14,7 @@ const { countryDetails } = useGetCountryDetails(list, route.params.name.toString
   <main class="w-full min-h-screen bg-very-light-gray dark:bg-very-dark-blue-dark dark:text-white">
     <AppHeader titleTag="p" />
 
-    <RouterLink
-      :to="{ name: 'home' }"
-      class="card w-fit mt-2 mr-2 px-4 py-2 flex items-center justify-center rounded"
-    >
+    <RouterLink :to="{ name: 'home' }" class="link-simulate-button w-fit mt-2 mr-2">
       Back
     </RouterLink>
 
