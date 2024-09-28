@@ -4,6 +4,7 @@ import CountryList from '@/components/CountryList.vue'
 import { ref } from 'vue'
 import SearchCountry from '@/components/SearchCountry.vue'
 import FilterRegion from '@/components/FilterRegion.vue'
+import AppHeader from '@/components/AppHeader.vue'
 import { useFilterCountries } from '@/hooks/useFilterCountries'
 import { debounce } from 'lodash'
 
@@ -28,13 +29,13 @@ const setRegion = (value: string) => {
 </script>
 
 <template>
-  <main>
-    <header>
-      <h1 class="text-3xl font-bold">Where in the world?</h1>
-    </header>
+  <main class="w-full min-h-screen bg-very-light-gray dark:bg-very-dark-blue-dark dark:text-white">
+    <AppHeader />
 
-    <SearchCountry @onSearch="setName" />
-    <FilterRegion @onFilter="setRegion" />
+    <div class="w-full my-[30px] lg:my-12 px-5 lg:px-20 lg:flex lg:items-center lg:justify-between">
+      <SearchCountry @onSearch="setName" />
+      <FilterRegion @onFilter="setRegion" />
+    </div>
 
     <p v-if="isLoading">Loading...</p>
     <p v-else-if="isError">Error</p>

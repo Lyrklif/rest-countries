@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router'
 import { useGetCountryDetails } from '@/hooks/useGetCountryDetails'
 import { fetchCountries } from '@/queries'
 import CountryDetail from '@/components/CountryDetail.vue'
+import AppHeader from '@/components/AppHeader.vue'
 
 const route = useRoute()
 const { isPending: isLoading, isError, data: list } = fetchCountries()
@@ -10,9 +11,16 @@ const { countryDetails } = useGetCountryDetails(list, route.params.name.toString
 </script>
 
 <template>
-  <main>
-    <RouterLink :to="{ name: 'home' }">Back</RouterLink>
-    
+  <main class="w-full min-h-screen bg-very-light-gray dark:bg-very-dark-blue-dark dark:text-white">
+    <AppHeader />
+
+    <RouterLink
+      :to="{ name: 'home' }"
+      class="w-fit mt-2 mr-2 px-4 py-2 flex items-center justify-center bg-white dark:bg-dark-blue rounded box-shadow"
+    >
+      Back
+    </RouterLink>
+
     <p v-if="isLoading">Loading...</p>
     <p v-else-if="isError">Error</p>
     <p v-else-if="!countryDetails || !route.params.name">Not Found</p>

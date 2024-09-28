@@ -17,7 +17,15 @@ const onInput = () => {
 </script>
 
 <template>
-  <form>
-    <input type="search" v-model="query" @input="onInput" placeholder="Search for a country..." />
+  <form
+    class="w-full lg:w-[480px] h-14 space-x-4 px-8 flex items-center bg-white dark:bg-dark-blue box-shadow rounded-md"
+  >
+    <input
+      type="search"
+      v-model="query"
+      @input="onInput"
+      placeholder="Search for a country..."
+      class="h-full flex-1 bg-transparent placeholder:text-light-text-secondary dark:placeholder:text-gray-300 focus:outline-none"
+    />
   </form>
 </template>

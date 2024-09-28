@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <ul>
+  <ul class="px-5 lg:px-20 grid grid-cols-1 lg:grid-cols-4 gap-20">
     <li v-for="item in props.list" :key="item.name.official">
       <RouterLink :to="{ name: 'country', params: { name: item.name.common } }">
         <CountryCard

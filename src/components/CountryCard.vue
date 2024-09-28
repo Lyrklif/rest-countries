@@ -26,30 +26,32 @@ const props = defineProps({
 </script>
 
 <template>
-  <article>
-    <FlagImage :alt="props.name" :image="props.image" />
+  <article class="w-full rounded-md box-shadow overflow-hidden bg-white dark:bg-dark-blue">
+    <FlagImage :alt="props.name" :image="props.image" height="160" />
 
-    <header>
-      <h2>{{ props.name }}</h2>
-    </header>
+    <div class="p-6">
+      <header class="mb-2">
+        <h2 class="text-xl font-bold">{{ props.name }}</h2>
+      </header>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Population:</td>
-          <td>{{ props.population }}</td>
-        </tr>
-        <tr>
-          <td>Region:</td>
-          <td>{{ props.region }}</td>
-        </tr>
-        <tr>
-          <td>Capital:</td>
-          <td v-for="(item, index) in props.capitals" :key="item">
-            {{ index ? ', ' : '' }}{{ item }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="block">
+        <tbody class="block">
+          <tr class="block">
+            <td class="text-sm font-semibold">Population:</td>
+            <td class="font-light">{{ props.population }}</td>
+          </tr>
+          <tr class="block">
+            <td class="text-sm font-semibold">Region:</td>
+            <td class="font-light">{{ props.region }}</td>
+          </tr>
+          <tr class="block">
+            <td class="text-sm font-semibold">Capital:</td>
+            <td v-for="(item, index) in props.capitals" :key="item" class="font-light">
+              {{ index ? ', ' : '' }}{{ item }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </article>
 </template>
