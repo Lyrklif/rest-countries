@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DarkModeToggle from '@/components/molecules/DarkModeToggle.vue'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 type TProps = {
   titleTag?: string
@@ -8,6 +8,8 @@ type TProps = {
 const props = withDefaults(defineProps<TProps>(), {
   titleTag: 'h1'
 })
+
+const { isDarkMode, toggleDarkMode } = useDarkMode()
 </script>
 
 <template>
@@ -16,6 +18,9 @@ const props = withDefaults(defineProps<TProps>(), {
   >
     <component :is="props.titleTag" class="text-3xl font-bold">Where in the world?</component>
 
-    <DarkModeToggle />
+    <button @click="toggleDarkMode">
+      {{ isDarkMode ? '-' : '+' }}
+      Dark mode
+    </button>
   </header>
 </template>
