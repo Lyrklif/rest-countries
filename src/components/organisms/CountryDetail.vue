@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import FlagImage from '@/components/atoms/FlagImage.vue'
+import CountryInfoBlock from '@/components/atoms/CountryInfoBlock.vue'
 
 const props = defineProps({
   name: {
@@ -40,25 +41,18 @@ const props = defineProps({
 
       <table class="block">
         <tbody class="block">
-          <tr class="block">
-            <td class="text-sm font-semibold">Population:</td>
-            <td class="font-light">{{ props.population }}</td>
-          </tr>
-          <tr class="block">
-            <td class="text-sm font-semibold">Region:</td>
-            <td class="font-light">{{ props.region }}</td>
-          </tr>
-          <tr class="block">
-            <td class="text-sm font-semibold">Capital:</td>
-            <td v-for="(item, index) in props.capitals" :key="item" class="">
-              <RouterLink
-                :to="{ name: 'country', params: { name: item } }"
-                class="mt-2 mr-2 px-4 py-2 flex items-center justify-center bg-white dark:bg-dark-blue rounded box-shadow"
-              >
-                {{ index ? ', ' : '' }}{{ item }}
-              </RouterLink>
-            </td>
-          </tr>
+          <CountryInfoBlock title="Population" :text="props.population" />
+          <CountryInfoBlock title="Region" :text="props.region" />
+          <CountryInfoBlock title="Capital" :text="props.region">
+            <RouterLink
+              v-for="(item, index) in props.capitals"
+              :key="item"
+              :to="{ name: 'country', params: { name: item } }"
+              class="mt-2 mr-2 px-4 py-2 flex items-center justify-center bg-white dark:bg-dark-blue rounded box-shadow"
+            >
+              {{ index ? ', ' : '' }}{{ item }}
+            </RouterLink>
+          </CountryInfoBlock>
         </tbody>
       </table>
     </div>

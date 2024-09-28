@@ -1,28 +1,16 @@
 <script setup lang="ts">
 import FlagImage from '@/components/atoms/FlagImage.vue'
+import CountryInfoBlock from '@/components/atoms/CountryInfoBlock.vue'
 
-const props = defineProps({
-  name: {
-    type: String,
-    default: ''
-  },
-  population: {
-    type: Number,
-    default: 0
-  },
-  region: {
-    type: String,
-    default: ''
-  },
-  capitals: {
-    type: Array<string>,
-    default: () => []
-  },
-  image: {
-    type: String,
-    default: ''
-  }
-})
+type TProps = {
+  name: string
+  population: number
+  region: string
+  capitals: string[]
+  image: string
+}
+
+const props = defineProps<TProps>()
 </script>
 
 <template>
@@ -36,20 +24,13 @@ const props = defineProps({
 
       <table class="block">
         <tbody class="block">
-          <tr class="block">
-            <td class="text-sm font-semibold">Population:</td>
-            <td class="font-light">{{ props.population }}</td>
-          </tr>
-          <tr class="block">
-            <td class="text-sm font-semibold">Region:</td>
-            <td class="font-light">{{ props.region }}</td>
-          </tr>
-          <tr class="block">
-            <td class="text-sm font-semibold">Capital:</td>
-            <td v-for="(item, index) in props.capitals" :key="item" class="font-light">
+          <CountryInfoBlock title="Population" :text="props.population" />
+          <CountryInfoBlock title="Region" :text="props.region" />
+          <CountryInfoBlock title="Capital">
+            <div v-for="(item, index) in props.capitals" :key="item">
               {{ index ? ', ' : '' }}{{ item }}
-            </td>
-          </tr>
+            </div>
+          </CountryInfoBlock>
         </tbody>
       </table>
     </div>

@@ -12,7 +12,7 @@ const { countryDetails } = useGetCountryDetails(list, route.params.name.toString
 
 <template>
   <main class="w-full min-h-screen bg-very-light-gray dark:bg-very-dark-blue-dark dark:text-white">
-    <AppHeader />
+    <AppHeader titleTag="p" />
 
     <RouterLink
       :to="{ name: 'home' }"
