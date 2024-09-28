@@ -39,22 +39,22 @@ const props = defineProps<TProps>()
           <CountryInfoBlock v-if="props.region" title="Region" :text="props.region" />
           <CountryInfoBlock v-if="props.subregion" title="Subregion" :text="props.subregion" />
           <CountryInfoBlock
-            v-if="props.capitals.length"
+            v-if="props.capitals?.length"
             title="Capital"
             :text="props.capitals.join(', ')"
           />
           <CountryInfoBlock
-            v-if="props.domains.length"
+            v-if="props.domains?.length"
             title="Top Level Domain"
             :text="props.domains.join(', ')"
           />
           <CountryInfoBlock
-            v-if="props.currencies.length"
+            v-if="props.currencies?.length"
             title="Currencies"
             :text="props.currencies.join(', ')"
           />
           <CountryInfoBlock
-            v-if="props.languages.length"
+            v-if="props.languages?.length"
             title="Languages"
             :text="props.languages.join(', ')"
           />
