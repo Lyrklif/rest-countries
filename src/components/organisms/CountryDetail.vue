@@ -48,7 +48,7 @@ const props = defineProps({
               v-for="(item, index) in props.capitals"
               :key="item"
               :to="{ name: 'country', params: { name: item } }"
-              class="mt-2 mr-2 px-4 py-2 flex items-center justify-center bg-white dark:bg-dark-blue rounded box-shadow"
+              class="card mt-2 mr-2 px-4 py-2 flex items-center justify-center rounded"
             >
               {{ index ? ', ' : '' }}{{ item }}
             </RouterLink>

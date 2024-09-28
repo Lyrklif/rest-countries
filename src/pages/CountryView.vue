@@ -16,7 +16,7 @@ const { countryDetails } = useGetCountryDetails(list, route.params.name.toString
 
     <RouterLink
       :to="{ name: 'home' }"
-      class="w-fit mt-2 mr-2 px-4 py-2 flex items-center justify-center bg-white dark:bg-dark-blue rounded box-shadow"
+      class="card w-fit mt-2 mr-2 px-4 py-2 flex items-center justify-center rounded"
     >
       Back
     </RouterLink>

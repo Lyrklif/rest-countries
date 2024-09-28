@@ -17,9 +17,7 @@ const onInput = () => {
 </script>
 
 <template>
-  <form
-    class="w-full lg:w-[480px] h-14 space-x-4 px-8 flex items-center bg-white dark:bg-dark-blue box-shadow rounded-md"
-  >
+  <form class="card w-full lg:w-[480px] h-14 space-x-4 px-8 flex items-center rounded-md">
     <input
       type="search"
       v-model="query"

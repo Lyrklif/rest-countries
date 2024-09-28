@@ -14,7 +14,7 @@ const props = defineProps<TProps>()
 </script>
 
 <template>
-  <article class="w-full rounded-md box-shadow overflow-hidden bg-white dark:bg-dark-blue">
+  <article class="card w-full rounded-md overflow-hidden">
     <FlagImage :alt="props.name" :image="props.image" height="160" />
 
     <div class="p-6">

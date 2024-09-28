@@ -23,7 +23,7 @@ const onChange = () => {
   <select
     v-model="filter"
     @change="onChange"
-    class="w-[200px] h-14 mt-[50px] mb-[10px] lg:my-0 pl-6 pr-4 flex items-center justify-between relative bg-white dark:bg-dark-blue box-shadow rounded-md"
+    class="card w-[200px] h-14 mt-[50px] mb-[10px] lg:my-0 pl-6 pr-4 flex items-center justify-between relative rounded-md"
   >
     <option :value="FILTERS.ALL" selected :disabled="!filter" :hidden="!filter">
       Filter by Region
