@@ -1,7 +1,7 @@
 <script setup lang="ts">
 type TProps = {
   title: string
-  text?: string
+  text?: string | number
 }
 
 const props = defineProps<TProps>()
