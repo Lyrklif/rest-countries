@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import DropdownSelect from '@/components/atoms/DropdownSelect.vue'
 
 enum FILTERS {
   ALL = '',
@@ -12,26 +13,23 @@ enum FILTERS {
 
 const filter = ref(FILTERS.ALL)
 
+const options = [
+  { value: FILTERS.ALL, label: 'Filter by Region' },
+  { value: FILTERS.AFRICA, label: 'Africa' },
+  { value: FILTERS.AMERICA, label: 'America' },
+  { value: FILTERS.ASIA, label: 'Asia' },
+  { value: FILTERS.EUROPE, label: 'Europe' },
+  { value: FILTERS.OCEANIA, label: 'Oceania' }
+]
+
 const emit = defineEmits(['onFilter'])
 
-const onChange = () => {
+const onFilterChange = (value: FILTERS) => {
+  filter.value = value
   emit('onFilter', filter.value)
 }
 </script>
 
 <template>
-  <select
-    v-model="filter"
-    @change="onChange"
-    class="card w-[200px] h-14 mt-[50px] mb-[10px] lg:my-0 pl-6 pr-4 flex items-center justify-between relative rounded-md"
-  >
-    <option :value="FILTERS.ALL" selected :disabled="!filter" :hidden="!filter">
-      Filter by Region
-    </option>
-    <option :value="FILTERS.AFRICA">Africa</option>
-    <option :value="FILTERS.AMERICA">America</option>
-    <option :value="FILTERS.ASIA">Asia</option>
-    <option :value="FILTERS.EUROPE">Europe</option>
-    <option :value="FILTERS.OCEANIA">Oceania</option>
-  </select>
+  <DropdownSelect v-model="filter" :options="options" @update:model-value="onFilterChange" />
 </template>
