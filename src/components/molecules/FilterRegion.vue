@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import DropdownSelect from '@/components/atoms/DropdownSelect.vue'
+import BaseSelect from '@/components/atoms/BaseSelect.vue'
 
 enum FILTERS {
   ALL = '',
@@ -31,5 +31,5 @@ const onFilterChange = (value: FILTERS) => {
 </script>
 
 <template>
-  <DropdownSelect v-model="filter" :options="options" @update:model-value="onFilterChange" />
+  <BaseSelect v-model="filter" :options="options" @update:model-value="onFilterChange" />
 </template>
