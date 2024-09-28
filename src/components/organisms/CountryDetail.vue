@@ -2,28 +2,21 @@
 import FlagImage from '@/components/atoms/FlagImage.vue'
 import CountryInfoBlock from '@/components/atoms/CountryInfoBlock.vue'
 
-const props = defineProps({
-  name: {
-    type: String,
-    default: ''
-  },
-  population: {
-    type: Number,
-    default: 0
-  },
-  region: {
-    type: String,
-    default: ''
-  },
-  capitals: {
-    type: Array<string>,
-    default: () => []
-  },
-  image: {
-    type: String,
-    default: ''
-  }
-})
+type TProps = {
+  name: string
+  nativeName: string
+  subregion: string
+  population: number
+  region: string
+  capitals: string[]
+  domains: string[]
+  currencies: string[]
+  languages: string[]
+  borders: string[]
+  image: string
+}
+
+const props = defineProps<TProps>()
 </script>
 
 <template>
@@ -41,16 +34,39 @@ const props = defineProps({
 
       <table class="block">
         <tbody class="block">
-          <CountryInfoBlock title="Population" :text="props.population" />
-          <CountryInfoBlock title="Region" :text="props.region" />
-          <CountryInfoBlock title="Capital" :text="props.region">
+          <CountryInfoBlock v-if="props.nativeName" title="Native Name" :text="props.nativeName" />
+          <CountryInfoBlock v-if="props.population" title="Population" :text="props.population" />
+          <CountryInfoBlock v-if="props.region" title="Region" :text="props.region" />
+          <CountryInfoBlock v-if="props.subregion" title="Subregion" :text="props.subregion" />
+          <CountryInfoBlock
+            v-if="props.capitals.length"
+            title="Capital"
+            :text="props.capitals.join(', ')"
+          />
+          <CountryInfoBlock
+            v-if="props.domains.length"
+            title="Top Level Domain"
+            :text="props.domains.join(', ')"
+          />
+          <CountryInfoBlock
+            v-if="props.currencies.length"
+            title="Currencies"
+            :text="props.currencies.join(', ')"
+          />
+          <CountryInfoBlock
+            v-if="props.languages.length"
+            title="Languages"
+            :text="props.languages.join(', ')"
+          />
+
+          <CountryInfoBlock v-if="props.borders.length" title="Border Countries">
             <RouterLink
-              v-for="(item, index) in props.capitals"
+              v-for="item in props.borders"
               :key="item"
               :to="{ name: 'country', params: { name: item } }"
               class="link-simulate-button mt-2 mr-2"
             >
-              {{ index ? ', ' : '' }}{{ item }}
+              {{ item }}
             </RouterLink>
           </CountryInfoBlock>
         </tbody>

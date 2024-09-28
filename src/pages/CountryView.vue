@@ -25,8 +25,14 @@ const { countryDetails } = useGetCountryDetails(list, route.params.name.toString
     <div v-else>
       <CountryDetail
         :name="countryDetails.name.common"
+        :nativeName="countryDetails.name.official"
         :population="countryDetails.population"
+        :subregion="countryDetails.subregion"
         :region="countryDetails.region"
+        :domains="countryDetails.tld"
+        :currencies="Object.values(countryDetails.currencies).map((currency) => currency.name)"
+        :languages="Object.values(countryDetails.languages)"
+        :borders="Object.values(countryDetails.borders)"
         :capitals="countryDetails.capital"
         :image="countryDetails.flags.svg"
       />

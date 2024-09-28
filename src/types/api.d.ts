@@ -19,4 +19,10 @@ type Country = {
   borders: {
     [key: string]: string
   }
+  currencies: {
+    [key: string]: {
+      name: string
+      symbol: string
+    }
+  }
 }
