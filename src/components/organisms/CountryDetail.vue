@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FlagImage from '@/components/FlagImage.vue'
+import FlagImage from '@/components/atoms/FlagImage.vue'
 
 const props = defineProps({
   name: {
@@ -26,12 +26,16 @@ const props = defineProps({
 </script>
 
 <template>
-  <article class="w-full rounded-md box-shadow overflow-hidden bg-white dark:bg-dark-blue">
-    <FlagImage :alt="props.name" :image="props.image" height="160" />
+  <article class="px-14 lg:px-20 lg:grid lg:grid-cols-2 lg:gap-20">
+    <div class="my-10 lg:my-0 flex items-center justify-center">
+      <FlagImage :alt="props.name" :image="props.image" />
+    </div>
 
-    <div class="p-6">
-      <header class="mb-2">
-        <h2 class="text-xl font-bold">{{ props.name }}</h2>
+    <div
+      class="pb-10 lg:pb-0 flex flex-grow lg:flex-grow-0 flex-col justify-between lg:justify-center"
+    >
+      <header>
+        <h1 class="mb-10 lg:mb-0 text-3xl font-extrabold">{{ props.name }}</h1>
       </header>
 
       <table class="block">
@@ -46,8 +50,13 @@ const props = defineProps({
           </tr>
           <tr class="block">
             <td class="text-sm font-semibold">Capital:</td>
-            <td v-for="(item, index) in props.capitals" :key="item" class="font-light">
-              {{ index ? ', ' : '' }}{{ item }}
+            <td v-for="(item, index) in props.capitals" :key="item" class="">
+              <RouterLink
+                :to="{ name: 'country', params: { name: item } }"
+                class="mt-2 mr-2 px-4 py-2 flex items-center justify-center bg-white dark:bg-dark-blue rounded box-shadow"
+              >
+                {{ index ? ', ' : '' }}{{ item }}
+              </RouterLink>
             </td>
           </tr>
         </tbody>

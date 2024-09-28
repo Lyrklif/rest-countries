@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CountryCard from './CountryCard.vue'
+import CountryCard from '../molecules/CountryCard.vue'
 
 const props = defineProps({
   list: {

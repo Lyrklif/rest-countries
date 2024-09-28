@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { fetchCountries } from '@/queries'
-import CountryList from '@/components/CountryList.vue'
+import CountryList from '@/components/organisms/CountryList.vue'
 import { ref } from 'vue'
-import SearchCountry from '@/components/SearchCountry.vue'
-import FilterRegion from '@/components/FilterRegion.vue'
-import AppHeader from '@/components/AppHeader.vue'
+import SearchCountry from '@/components/molecules/SearchCountry.vue'
+import FilterRegion from '@/components/molecules/FilterRegion.vue'
+import AppHeader from '@/components/organisms/AppHeader.vue'
 import { useFilterCountries } from '@/hooks/useFilterCountries'
 import { debounce } from 'lodash'
 

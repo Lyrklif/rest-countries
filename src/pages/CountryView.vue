@@ -2,8 +2,8 @@
 import { useRoute } from 'vue-router'
 import { useGetCountryDetails } from '@/hooks/useGetCountryDetails'
 import { fetchCountries } from '@/queries'
-import CountryDetail from '@/components/CountryDetail.vue'
-import AppHeader from '@/components/AppHeader.vue'
+import CountryDetail from '@/components/organisms/CountryDetail.vue'
+import AppHeader from '@/components/organisms/AppHeader.vue'
 
 const route = useRoute()
 const { isPending: isLoading, isError, data: list } = fetchCountries()
