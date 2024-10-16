@@ -10,21 +10,21 @@ import { debounce } from 'lodash'
 
 const WAIT = 100
 
-const name = ref<string>('')
-const region = ref<string>('')
+const countryName = ref<string>('')
+const countryRegion = ref<string>('')
 
 const { isPending: isLoading, isError, data: list } = fetchCountries()
-const { filteredList } = useFilterCountries(list, name, region)
+const { filteredList } = useFilterCountries(list, countryName, countryRegion)
 
 const setName = debounce((value: string) => {
-  const hasChanges = name.value !== value
+  const hasChanges = countryName.value !== value
   if (!hasChanges) return
 
-  name.value = value
+  countryName.value = value
 }, WAIT)
 
 const setRegion = (value: string) => {
-  region.value = value
+  countryRegion.value = value
 }
 
 const isShowList = computed(() => {

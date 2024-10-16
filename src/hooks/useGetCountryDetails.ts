@@ -12,13 +12,13 @@ export const useGetCountryDetails = (list: Ref<Country[]>) => {
   const countryDetails: ComputedRef<Country | null> = computed(() => {
     if (!list.value?.length || !code.value) return null
 
-    const codeTrimmed: string = code.value.trim().toLowerCase()
+    const trimmedCode: string = code.value.trim().toLowerCase()
 
     return (
       list.value.find((country: Country) => {
         const code = getCountryCode(country)
 
-        return code.toLowerCase() === codeTrimmed
+        return code.toLowerCase() === trimmedCode
       }) || null
     )
   })
