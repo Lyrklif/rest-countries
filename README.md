@@ -1,5 +1,9 @@
 # Frontend Mentor - REST Countries API with color theme switcher
 
+![ScreenShot_20241016224203](https://github.com/user-attachments/assets/205a03bb-7d42-4a89-8369-57b6a150550c)
+![ScreenShot_20241016224207](https://github.com/user-attachments/assets/b86338c8-1b40-405e-8c7f-eb3d99556517)
+
+
 ## Welcome! 👋
 
 Thanks for checking out this front-end coding challenge.
