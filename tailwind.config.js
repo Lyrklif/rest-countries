@@ -15,7 +15,6 @@ export default {
         'very-light-gray': 'hsl(0, 0%, 97%)', // Light Mode Background
         'dark-blue': 'hsl(209, 23%, 22%)', // Dark Mode Elements
         'dark-gray': 'hsl(0, 0%, 52%)', // Light Mode Input
-        'very-dark-blue-light': 'hsl(200, 15%, 8%)', //Light Mode Text
         'very-dark-blue-dark': 'hsl(207, 26%, 17%)' // Dark Mode Background
       }
     },

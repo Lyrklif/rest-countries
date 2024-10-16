@@ -7,6 +7,8 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from 'tailwindcss'
 import webfontDownload from 'vite-plugin-webfont-dl'
 
+const base = process.env.NODE_ENV === 'development' ? '/' : '/rest-countries/'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -22,6 +24,7 @@ export default defineConfig({
       plugins: [tailwindcss()]
     }
   },
+  base,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
