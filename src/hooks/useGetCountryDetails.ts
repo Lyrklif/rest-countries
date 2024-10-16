@@ -1,28 +1,30 @@
 import type { ComputedRef, Ref } from 'vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { getCountryCode } from '@/helpers/getCountryCode'
 
-type TFiltered = {
-  countryDetails: Ref<Country | undefined>
-}
+export const useGetCountryDetails = (list: Ref<Country[]>) => {
+  const code = ref<string>('')
 
-export const useGetCountryDetails = (
-  list: Ref<Country[] | undefined>,
-  countryName: string
-): TFiltered => {
-  const countryDetails: ComputedRef<Country | undefined> = computed(() => {
-    if (!list.value) return undefined
+  const setCode = (value: string) => {
+    code.value = value
+  }
 
-    const nameFilter: string = countryName.trim().toLowerCase()
+  const countryDetails: ComputedRef<Country | null> = computed(() => {
+    if (!list.value?.length || !code.value) return null
 
-    return list.value.find((country: Country) => {
-      const code = getCountryCode(country)
+    const codeTrimmed: string = code.value.trim().toLowerCase()
 
-      return code.toLowerCase() === nameFilter
-    })
+    return (
+      list.value.find((country: Country) => {
+        const code = getCountryCode(country)
+
+        return code.toLowerCase() === codeTrimmed
+      }) || null
+    )
   })
 
   return {
-    countryDetails
+    countryDetails,
+    setCode
   }
 }

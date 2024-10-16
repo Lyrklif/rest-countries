@@ -1,15 +1,11 @@
 import type { ComputedRef, Ref } from 'vue'
 import { computed } from 'vue'
 
-type TFiltered = {
-  filteredList: Ref<Country[]>
-}
-
 export const useFilterCountries = (
   list: Ref<Country[] | undefined>,
   name: Ref<string>,
   region: Ref<string>
-): TFiltered => {
+) => {
   const filteredList: ComputedRef<Country[]> = computed(() => {
     if (!list.value) return []
     if (!region.value && !name.value) return list.value

@@ -1,23 +1,35 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useGetCountryDetails } from '@/hooks/useGetCountryDetails'
 import { fetchCountries } from '@/queries'
 import CountryDetail from '@/components/organisms/CountryDetail.vue'
 import StatusMessages from '@/components/atoms/StatusMessages.vue'
-import { computed } from 'vue'
 import { getCountryCode } from '@/helpers/getCountryCode'
 
 const route = useRoute()
+const router = useRouter()
 const { isPending: isLoading, isError, data: list } = fetchCountries()
-const { countryDetails } = useGetCountryDetails(list, route.params.name.toString())
+const { countryDetails, setCode } = useGetCountryDetails(list)
 
 const isShowCountryData = computed(() => {
   return !isLoading.value && !isError.value && countryDetails.value && route.params.name
 })
+
+watch(
+  () => route.params.name,
+  () => {
+    setCode(route.params.name.toString())
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'home' }" class="link-simulate-button md:w-fit">Back</RouterLink>
+  <header class="flex items-center justify-start gap-5 mb-10">
+    <RouterLink :to="{ name: 'home' }" class="link-simulate-button md:w-fit">Home</RouterLink>
+    <button @click="router.back()" class="link-simulate-button md:w-fit">Back</button>
+  </header>
 
   <CountryDetail
     v-if="isShowCountryData"
@@ -33,7 +45,6 @@ const isShowCountryData = computed(() => {
     :borders="Object.values(countryDetails.borders)"
     :capitals="countryDetails.capital"
     :image="countryDetails.flags.svg"
-    class="mt-10"
   />
 
   <StatusMessages
