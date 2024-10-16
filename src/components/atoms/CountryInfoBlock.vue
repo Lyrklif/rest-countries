@@ -12,7 +12,7 @@ const props = defineProps<TProps>()
   <tr class="block text-lg">
     <td class="font-bold pr-2">{{ props.title }}:</td>
     <td class="font-light dark:text-gray-300" :class="valueClasses">
-      <slot>{{ props.text }}</slot>
+      <slot>{{ props.text || '-' }}</slot>
     </td>
   </tr>
 </template>
