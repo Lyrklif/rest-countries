@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .card {
+    @apply bg-white dark:bg-dark-blue shadow-very-light-gray dark:shadow-dark-gray;
+  }
+
+  .link-simulate-button {
+    @apply card px-4 py-2 flex items-center justify-center rounded text-center;
+  }
+
+  .field {
+    @apply rounded-md outline-zinc-400 dark:outline-zinc-900 text-gray-600 dark:text-gray-300 placeholder:text-gray-600 dark:placeholder:text-gray-300;
+  }
+}
