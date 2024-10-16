@@ -23,7 +23,7 @@ const localValue = computed({
 <template>
   <select
     v-model="localValue"
-    class="card w-[200px] h-14 mt-3 mb-2.5 lg:my-0 pl-6 pr-4 flex items-center justify-between relative rounded-md"
+    class="field card h-14 px-4 border-e-8 border-transparent border-solid"
   >
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.label }}

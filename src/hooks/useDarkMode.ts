@@ -4,7 +4,7 @@ const THEME_CLASS = 'dark'
 const STORAGE_DARK_MODE_KEY = 'darkMode'
 
 export function useDarkMode() {
-  const isDarkMode = ref<boolean>(false)
+  const isDarkMode = ref<boolean>(true)
 
   const toggleDarkMode = () => {
     isDarkMode.value = !isDarkMode.value

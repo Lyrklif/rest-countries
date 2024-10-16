@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { fetchCountries } from '@/queries'
 import CountryList from '@/components/organisms/CountryList.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import SearchCountry from '@/components/molecules/SearchCountry.vue'
 import FilterRegion from '@/components/molecules/FilterRegion.vue'
-import AppHeader from '@/components/molecules/AppHeader.vue'
+import StatusMessages from '@/components/atoms/StatusMessages.vue'
 import { useFilterCountries } from '@/hooks/useFilterCountries'
 import { debounce } from 'lodash'
 
 const WAIT = 100
 
-const name = ref('')
-const region = ref('')
+const name = ref<string>('')
+const region = ref<string>('')
 
 const { isPending: isLoading, isError, data: list } = fetchCountries()
 const { filteredList } = useFilterCountries(list, name, region)
@@ -26,20 +26,24 @@ const setName = debounce((value: string) => {
 const setRegion = (value: string) => {
   region.value = value
 }
+
+const isShowList = computed(() => {
+  return !isLoading.value && !isError.value && filteredList.value.length
+})
 </script>
 
 <template>
-  <main class="w-full min-h-screen bg-very-light-gray dark:bg-very-dark-blue-dark dark:text-white">
-    <AppHeader />
+  <div class="w-full lg:flex lg:items-center lg:justify-between mb-10 gap-5">
+    <SearchCountry @onSearch="setName" class="w-full lg:w-96" />
+    <FilterRegion @onFilter="setRegion" class="w-full lg:w-52 mt-5 lg:mt-0" />
+  </div>
 
-    <div class="w-full my-[30px] lg:my-12 px-5 lg:px-20 lg:flex lg:items-center lg:justify-between">
-      <SearchCountry @onSearch="setName" />
-      <FilterRegion @onFilter="setRegion" />
-    </div>
+  <CountryList v-if="isShowList" :list="filteredList" />
 
-    <p v-if="isLoading">Loading...</p>
-    <p v-else-if="isError">Error</p>
-    <p v-else-if="!filteredList.length">Not Found</p>
-    <CountryList v-else :list="filteredList" />
-  </main>
+  <StatusMessages
+    v-else
+    :isLoading="isLoading"
+    :isError="isError"
+    :isNotFound="!filteredList.length"
+  />
 </template>

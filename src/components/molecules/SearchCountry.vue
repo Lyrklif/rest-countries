@@ -19,7 +19,7 @@ const onInput = (value: string) => {
 </script>
 
 <template>
-  <form class="card w-full lg:w-[480px] h-14 space-x-4 px-8 flex items-center rounded-md">
+  <form class="card h-14 flex items-center">
     <BaseInput v-model="query" placeholder="Search for a country..." @update:modelValue="onInput" />
   </form>
 </template>

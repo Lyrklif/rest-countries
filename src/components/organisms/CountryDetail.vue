@@ -20,16 +20,16 @@ const props = defineProps<TProps>()
 </script>
 
 <template>
-  <article class="px-14 lg:px-20 lg:grid lg:grid-cols-2 lg:gap-20">
-    <div class="my-10 lg:my-0 flex items-center justify-center">
-      <FlagImage :alt="props.name" :image="props.image" />
+  <article class="lg:grid lg:grid-cols-2 lg:gap-20">
+    <div class="mb-10 lg:mb-0 flex items-center justify-center">
+      <FlagImage :alt="props.name" :image="props.image" class="md:max-w-96 lg:max-w-full" />
     </div>
 
     <div
       class="pb-10 lg:pb-0 flex flex-grow lg:flex-grow-0 flex-col justify-between lg:justify-center"
     >
       <header>
-        <h1 class="mb-10 lg:mb-0 text-3xl font-extrabold">{{ props.name }}</h1>
+        <h1 class="mb-10 lg:mb-4 text-3xl font-extrabold">{{ props.name }}</h1>
       </header>
 
       <table class="block">
@@ -59,7 +59,12 @@ const props = defineProps<TProps>()
             :text="props.languages.join(', ')"
           />
 
-          <CountryInfoBlock v-if="props.borders.length" title="Border Countries">
+          <CountryInfoBlock
+            v-if="props.borders.length"
+            title="Border Countries"
+            class="mt-4"
+            valueClasses="flex flex-wrap gap-2"
+          >
             <RouterLink
               v-for="item in props.borders"
               :key="item"

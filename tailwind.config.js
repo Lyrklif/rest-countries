@@ -12,7 +12,7 @@ export default {
     extend: {
       colors: {
         white: 'hsl(0, 0%, 100%)', // Dark Mode Text & Light Mode Elements
-        'very-light-gray': 'hsl(0, 0%, 98%)', // Light Mode Background
+        'very-light-gray': 'hsl(0, 0%, 97%)', // Light Mode Background
         'dark-blue': 'hsl(209, 23%, 22%)', // Dark Mode Elements
         'dark-gray': 'hsl(0, 0%, 52%)', // Light Mode Input
         'very-dark-blue-light': 'hsl(200, 15%, 8%)', //Light Mode Text

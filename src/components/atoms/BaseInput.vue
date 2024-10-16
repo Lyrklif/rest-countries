@@ -20,6 +20,6 @@ const onInput = (event: Event) => {
     :value="props.modelValue"
     @input="onInput"
     :placeholder="placeholder"
-    class="h-full flex-1 bg-transparent placeholder:text-light-text-secondary dark:placeholder:text-gray-300 focus:outline-none"
+    class="field h-full px-4 flex-1 bg-transparent"
   />
 </template>
