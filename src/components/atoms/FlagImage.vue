@@ -26,7 +26,7 @@ const onLoadEnd = () => {
       loading="lazy"
       @load="onLoadEnd"
       @error="onLoadEnd"
-      class="w-full max-w-full max-h-full object-cover"
+      class="w-full max-w-full h-full max-h-full object-cover"
     />
   </div>
 </template>
