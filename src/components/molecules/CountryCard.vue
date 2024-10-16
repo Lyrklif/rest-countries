@@ -8,6 +8,7 @@ type TProps = {
   region: string
   capitals: string[]
   image: string
+  code: string
 }
 
 const props = defineProps<TProps>()
@@ -24,6 +25,7 @@ const props = defineProps<TProps>()
 
       <table class="block">
         <tbody class="block">
+          <CountryInfoBlock title="Code" :text="props.code" />
           <CountryInfoBlock title="Population" :text="props.population" />
           <CountryInfoBlock title="Region" :text="props.region" />
           <CountryInfoBlock title="Capital">

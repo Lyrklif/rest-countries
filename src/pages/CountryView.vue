@@ -5,6 +5,7 @@ import { fetchCountries } from '@/queries'
 import CountryDetail from '@/components/organisms/CountryDetail.vue'
 import StatusMessages from '@/components/atoms/StatusMessages.vue'
 import { computed } from 'vue'
+import { getCountryCode } from '@/helpers/getCountryCode'
 
 const route = useRoute()
 const { isPending: isLoading, isError, data: list } = fetchCountries()
@@ -20,6 +21,7 @@ const isShowCountryData = computed(() => {
 
   <CountryDetail
     v-if="isShowCountryData"
+    :code="getCountryCode(countryDetails)"
     :name="countryDetails.name.common"
     :nativeName="countryDetails.name.official"
     :population="countryDetails.population"

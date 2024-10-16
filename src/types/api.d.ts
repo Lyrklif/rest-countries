@@ -25,4 +25,7 @@ type Country = {
       symbol: string
     }
   }
+  fifa: string
+  cioc: string
+  cca3: string
 }

@@ -14,6 +14,7 @@ type TProps = {
   languages: string[]
   borders: string[]
   image: string
+  code: string
 }
 
 const props = defineProps<TProps>()
@@ -34,6 +35,7 @@ const props = defineProps<TProps>()
 
       <table class="block">
         <tbody class="block">
+          <CountryInfoBlock v-if="props.code" title="Code" :text="props.code" />
           <CountryInfoBlock v-if="props.nativeName" title="Native Name" :text="props.nativeName" />
           <CountryInfoBlock v-if="props.population" title="Population" :text="props.population" />
           <CountryInfoBlock v-if="props.region" title="Region" :text="props.region" />
